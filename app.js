@@ -12,6 +12,13 @@ if(process.env.NODE_ENV !== 'production')
     require('dotenv').config();
 }
 
+// cors for angular client access
+const cors = require('cors');
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    methods: "GET,POST,PUT,DELETE,HEAD,OPTIONS"
+}));
+
 //DB Connection
 mongoose.connect(process.env.MONGO_DB,{})
 .then((res)=>{console.log('Connected to MongoDB')})

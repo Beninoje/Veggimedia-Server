@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Media = require('../models/media');
 
-// GET: /media => fetch all media docs
+//? GET: /media => fetch all media docs
 router.get('/', async (req, res) => {
     try {
         const media = await Media.find();
@@ -13,14 +13,13 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST: /media => save new media doc from request body
-router.post('/', async (req, res) => {
+//? POST: /media => save new media doc from request body
+router.post('/',async (req, res) => {
     try {
         const media = await Media.create(req.body);
-        return res.status(201).json(media); // 201: Resource Created
-    }
-    catch (err) {
-        return res.status(400).json(err);  // 400: Bad Request
+        return res.status(201).json(media); //! 201: Resource Created
+    } catch (error) {
+        return res.status(400).json(err); //! 400: Bad Request
     }
 });
 
