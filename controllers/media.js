@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Media = require('../models/media');
+const Provider = require("../models/provider");
 
 // GET: /media => fetch all media docs
 router.get('/', async (req, res) => {
@@ -12,6 +13,16 @@ router.get('/', async (req, res) => {
         return res.status(404).json(err);
     }
 });
+router.get('/providers', async (req, res) => {
+    try {
+        const providers = await Provider.find();
+        return res.status(200).json(providers);
+    }
+    catch (err) {
+        return res.status(404).json(err);
+    }
+});
+
 
 // POST: /media => save new media doc from request body
 router.post('/', async (req, res) => {
